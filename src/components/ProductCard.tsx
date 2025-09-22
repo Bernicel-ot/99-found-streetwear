@@ -35,11 +35,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
       {/* Product Image */}
       <Link href={`/products/${product.id}`}>
         <div className="aspect-square bg-gray-100 relative overflow-hidden cursor-pointer">
-          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-            <span className="text-gray-500 text-sm font-medium">
-              {product.category.toUpperCase()}
-            </span>
-          </div>
+          <img 
+            src={product.image} 
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          />
           {/* Overlay on hover */}
           <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <span className="text-white font-semibold bg-black/50 px-4 py-2">
@@ -48,7 +48,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </div>
         </div>
       </Link>
-      
       {/* Product Info */}
       <div className="p-4">
         <Link href={`/products/${product.id}`}>
@@ -59,7 +58,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <p className="text-gray-600 text-sm mb-3 uppercase tracking-wide">
           {product.category}
         </p>
-        <div className="flex justify-between items-center">
+        
+        {/* Price and Add to Cart - Hidden by default, shown on hover */}
+        <div className="flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
           <span className="text-xl font-bold text-black">
             ${product.price}
           </span>
